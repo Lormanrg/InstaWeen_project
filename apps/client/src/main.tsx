@@ -7,6 +7,7 @@ import { BrowserRouter } from "react-router-dom";
 import "@fontsource/jolly-lodger";
 import { UserProvider } from "./Context/UserContext.tsx";
 
+console.log(import.meta.env.VITE_GOOGLE_CLIENT_ID);
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>

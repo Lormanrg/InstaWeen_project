@@ -1,0 +1,17 @@
+2024-10-27T22:12:29.218446Z  WARN daemon_server: turborepo_lib::commands::daemon: daemon already running
+2024-10-27T22:12:29.428044Z  WARN daemon_server: turborepo_lib::commands::daemon: daemon already running
+2024-10-27T22:12:30.379188Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf(".turbo\\daemon\\997e08baae1fef84-turbo.log.2024-10-27")}
+2024-10-27T22:12:30.379333Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2024-10-27T22:12:36.394342Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("apps\\client\\vite.config.ts.timestamp-1730067156201-288c787e64fec.mjs"), AnchoredSystemPathBuf("apps\\client")}
+2024-10-27T22:12:36.394364Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("client"), path: AnchoredSystemPathBuf("apps\\client") }}))
+2024-10-27T22:12:39.174920Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("apps\\api")}
+2024-10-27T22:12:39.174942Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("api"), path: AnchoredSystemPathBuf("apps\\api") }}))
+2024-10-27T22:12:52.773560Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf(".turbo")}
+2024-10-27T22:12:52.773583Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2024-10-27T22:12:55.284834Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf(".turbo\\daemon"), AnchoredSystemPathBuf(".turbo\\cookies")}
+2024-10-27T22:12:55.284903Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2024-10-27T22:13:00.335522Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("apps\\api")}
+2024-10-27T22:13:00.335621Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("api"), path: AnchoredSystemPathBuf("apps\\api") }}))
+2024-10-27T22:13:10.506554Z  WARN turborepo_lib::package_changes_watcher: hashes are the same, no need to rerun
+2024-10-27T22:18:57.918908Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("")}
+2024-10-27T22:18:57.918928Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({}))

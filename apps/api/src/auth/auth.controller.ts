@@ -7,6 +7,7 @@ import {
   Req,
   Headers,
   SetMetadata,
+  Param,
 } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { CreateUserDto, LoginUserDto } from '../auth/dto/index';
@@ -61,13 +62,9 @@ export class AuthController {
     };
   }
 
-  @Get('private3')
-  @Auth()
-  privateRoute3(@GetUser() user: User) {
-    return {
-      ok: true,
-      user,
-    };
+  @Get(':userName/posts')
+  async getUserPosts(@Param('userName') userName: string) {
+    return this.authService.getUsersPosts(userName);
   }
 
   @Get('check-status')

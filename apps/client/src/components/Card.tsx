@@ -1,9 +1,55 @@
 import { MdHeartBroken } from "react-icons/md";
 import { RiFilePaper2Line } from "react-icons/ri";
 import { users } from "../utils/data/dummy";
+import { useEffect, useState } from "react";
+import { getPost } from '../api/postService';
+
+interface Post{
+  id: string
+  description: string
+}
 
 const Card = () => {
+
+  const [posts, setPosts] = useState<Post[]>([])
+  const [error, setError] = useState<string | null>(null)
+  
+  useEffect(()=>{
+
+    const fetchingPost = async ()=>{
+      try {
+        
+        const data = await getPost()
+        setPosts(data)
+
+      } catch (error:any) {
+ setError(error.message)
+ 
+        
+      }
+      getPost()
+    }
+
+    fetchingPost()
+  },[])
+
+  if(error){ 
+    return <div>Error:{error}</div>
+  }
+  
   return (
+
+<>    
+<ul>
+{posts.map((post) =>(
+
+  <li key={post.id}>
+    <div>{post.description}</div>
+
+
+  </li>
+))}
+</ul>
     <div className="overflow-y-auto p-4 bg-black items-center justify-center gap-2 flex flex-col min-h-screen">
       {" "}
       {users?.map((user) => (
@@ -110,7 +156,8 @@ const Card = () => {
         </div>
       ))}
     </div>
-  );
+    </>
+ );
 };
 
 export default Card;

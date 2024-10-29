@@ -23,7 +23,7 @@ export class CreateUserDto {
   password: string;
 
   @IsString()
-  @Transform(({ value }) => value.trim())
+  @Transform(({ value }) => value.trim().replace(/\s+/g, ' '))
   @MinLength(1)
-  fullName: string;
+  userName: string;
 }

@@ -29,7 +29,7 @@ export class User {
   @Column('text', {
     nullable: false,
   })
-  fullName: string;
+  userName: string;
 
   @Column('bool', {
     default: true,
@@ -43,10 +43,10 @@ export class User {
   role: string[];
 
   @OneToMany(() => Post, (post) => post.user)
-  post: Post;
+  post: Post[];
 
   @OneToMany(() => Comments, (comment) => comment.user)
-  comments: Comments;
+  comments: Comments[];
 
   @BeforeInsert()
   checkFieldsBeforeInser() {

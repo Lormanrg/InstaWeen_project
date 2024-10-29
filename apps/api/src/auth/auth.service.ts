@@ -14,12 +14,16 @@ import * as bcrypt from 'bcrypt';
 import { LoginUserDto } from './dto';
 import { JwtService } from '@nestjs/jwt';
 import { JwtPayload } from './interfaces/jwt-payload.interface';
+import { Post } from 'src/posts/entities';
 
 @Injectable()
 export class AuthService {
   constructor(
     @InjectRepository(User)
     private readonly userRepository: Repository<User>,
+
+    @InjectRepository(Post)
+    private readonly postRepository: Repository<Post>,
 
     private readonly jwtService: JwtService,
   ) {}
@@ -39,6 +43,32 @@ export class AuthService {
       return {
         ...user,
         token: this.getJwtToken({ id: user.id }),
+      };
+    } catch (error) {
+      this.handleDBErrors(error);
+    }
+  }
+
+  async getUsersPosts(userName: string) {
+    const userWithPost = await this.userRepository
+      .createQueryBuilder('user')
+      .leftJoinAndSelect('user.post', 'posts')
+      .where('LOWER(TRIM(user.userName)) = LOWER(TRIM(:userName))', {
+        userName,
+      })
+      .getOne();
+    if (!userWithPost) {
+      throw new BadRequestException(
+        `User with userName: ${userName} not found`,
+      );
+    }
+    try {
+      return {
+        userName: userWithPost.userName,
+        posts: userWithPost.post.map((post) => ({
+          postId: post.id,
+          postDescription: post.description,
+        })),
       };
     } catch (error) {
       this.handleDBErrors(error);

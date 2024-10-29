@@ -7,7 +7,7 @@ interface SeedPost {
 
 interface SeedUsers {
   email: string;
-  fullName: string;
+  userName: string;
   password: string;
   roles: string[];
 }
@@ -21,19 +21,19 @@ export const initialData: SeedData = {
   users: [
     {
       email: 'test1@gmail.com',
-      fullName: 'Test One',
+      userName: 'Test One',
       password: bcrypt.hashSync('Lorman4520', 10),
       roles: ['user', 'admin'],
     },
     {
       email: 'test2@gmail.com',
-      fullName: 'Test Two',
+      userName: 'Test Two',
       password: bcrypt.hashSync('Lorman4520', 10),
       roles: ['user', 'admin'],
     },
     {
       email: 'test3@gmail.com',
-      fullName: 'Test Three',
+      userName: 'Test Three',
       password: bcrypt.hashSync('Lorman4520', 10),
       roles: ['user', 'admin'],
     },
