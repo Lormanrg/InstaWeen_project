@@ -15,8 +15,11 @@ async function bootstrap() {
     }),
   );
 
-  app.enableCors();
-  await app.listen(process.env.PORT);
+  app.enableCors({
+    origin: 'http://localhost:5173', // Puerto de desarrollo de Vite
+    credentials: true,
+  });
+  await app.listen(process.env.PORT || 3000);
   logger.log(`Port running in ${process.env.PORT}`);
 }
 bootstrap();

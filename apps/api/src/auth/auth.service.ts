@@ -49,27 +49,22 @@ export class AuthService {
     }
   }
 
-  async getUsersPosts(userName: string) {
-    const userWithPost = await this.userRepository
+  async getAllUsersPosts() {
+    const usersWithPosts = await this.userRepository
       .createQueryBuilder('user')
       .leftJoinAndSelect('user.post', 'posts')
-      .where('LOWER(TRIM(user.userName)) = LOWER(TRIM(:userName))', {
-        userName,
-      })
-      .getOne();
-    if (!userWithPost) {
-      throw new BadRequestException(
-        `User with userName: ${userName} not found`,
-      );
+      .getMany();
+    if (!usersWithPosts) {
+      throw new BadRequestException(`User not found`);
     }
     try {
-      return {
-        userName: userWithPost.userName,
-        posts: userWithPost.post.map((post) => ({
+      return usersWithPosts.map((user) => ({
+        userName: user.userName,
+        posts: user.post.map((post) => ({
           postId: post.id,
           postDescription: post.description,
         })),
-      };
+      }));
     } catch (error) {
       this.handleDBErrors(error);
     }

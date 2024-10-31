@@ -2,35 +2,44 @@ import { MdHeartBroken } from "react-icons/md";
 import { RiFilePaper2Line } from "react-icons/ri";
 import { users } from "../utils/data/dummy";
 import { useEffect, useState } from "react";
-import { getPost } from '../api/postService';
+import { getPost } from "../api/postService";
+
 
 interface Post{
-  id: string
-  description: string
+  postId: string
+  postDescription: string
+  userName: string
+}
+
+interface Props{
+
+  userName: string
+  posts: Post[]
+
 }
 
 const Card = () => {
 
-  const [posts, setPosts] = useState<Post[]>([])
+  const [userPosts, setUserPosts] = useState<Props[]>([])
   const [error, setError] = useState<string | null>(null)
   
   useEffect(()=>{
 
-    const fetchingPost = async ()=>{
+    const fetchingUsersPost = async ()=>{
       try {
         
         const data = await getPost()
-        setPosts(data)
+        setUserPosts(data)
 
       } catch (error:any) {
  setError(error.message)
  
         
       }
-      getPost()
+
     }
 
-    fetchingPost()
+    fetchingUsersPost()
   },[])
 
   if(error){ 
@@ -41,12 +50,19 @@ const Card = () => {
 
 <>    
 <ul>
-{posts.map((post) =>(
+{userPosts.map((user) =>(
+  <li key={user.userName}>
+    <div>{user.userName}
 
-  <li key={post.id}>
-    <div>{post.description}</div>
+    
+    </div>
 
+{user.posts.map((post)=>(
+  <li key={post.postId}>
+    {post.postDescription}
 
+  </li>
+  ))}
   </li>
 ))}
 </ul>

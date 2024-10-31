@@ -62,9 +62,9 @@ export class AuthController {
     };
   }
 
-  @Get(':userName/posts')
-  async getUserPosts(@Param('userName') userName: string) {
-    return this.authService.getUsersPosts(userName);
+  @Get('posts')
+  async getUserPosts() {
+    return this.authService.getAllUsersPosts();
   }
 
   @Get('check-status')
